@@ -6,6 +6,8 @@ const input = searchEl.value.trim();
 let geoKey = "&apiKey=af0eec2b25d34eb690dca8d75d93b100";
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
 
+let yelpKey = "aBdON1ZvfAKCxHuCC0EUxrGoJYkiBMSVHOlne-grhLwl_lH2xVdrdr0dB8oWIW8GIpJeyo2ZelAiGq-ARqIYSXzNarkJXeG_yJK9Kk8iX2_bChtoEkojlSqFGzBJYXYx";
+let yelpUrlRoot = "https://api.yelp.com/v3/businesses/search?term=coffee&latitude=-93.2529553&longitude=35.328973";
 let searchHandler = function(event){
   event.preventDefault();
   testFetch(input);
@@ -22,4 +24,15 @@ let testFetch = function(city){
   })
 }
 
+let testYelp = function(lat,lon){
+  fetch(yelpUrlRoot)
+  .then(function(response){
+    response.json()
+    .then(function(data){
+      console.log(data);
+    })
+  })
+};
+
+testYelp();
 searchFormEl.addEventListener("submit",searchHandler);
