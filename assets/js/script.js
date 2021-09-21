@@ -24,20 +24,20 @@ let testFetch = function(){
     })
   })
 }
-let yelpTest = {
+let myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer aBdON1ZvfAKCxHuCC0EUxrGoJYkiBMSVHOlne-grhLwl_lH2xVdrdr0dB8oWIW8GIpJeyo2ZelAiGq-ARqIYSXzNarkJXeG_yJK9Kk8iX2_bChtoEkojlSqFGzBJYXYx");
+myHeaders.append("Access-Control-Allow-Origin", "same-origin");
+
+let requestOptions = {
   method: 'GET',
-  mode: 'no-cors',
-  Headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Authorization': 'Bearer aBdON1ZvfAKCxHuCC0EUxrGoJYkiBMSVHOlne-grhLwl_lH2xVdrdr0dB8oWIW8GIpJeyo2ZelAiGq-ARqIYSXzNarkJXeG_yJK9Kk8iX2_bChtoEkojlSqFGzBJYXYx'
-  }
-}
-fetch("https://api.yelp.com/v3/businesses/search?term=coffee&latitude=-93.2529553&longitude=35.328973", yelpTest)
-.then(function(response){
-  response.json()
-  .then(function(data){
-    console.log(data);
-  })
-})
+  headers: myHeaders, 
+  redirect: 'follow'
+};
+
+fetch("https://api.yelp.com/v3/businesses/search?term=delis&latitude=37.2529553&longitude=35.328973", requestOptions)
+.then(response => response.text())
+.then(result => console.log(result))
+.catch(error => console.log('error', error));
+ 
 
 searchFormEl.addEventListener("submit",searchHandler);
