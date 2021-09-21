@@ -16,18 +16,13 @@ A small and useful app to help you git your fix
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-
 ### Built With
 This section should list any major frameworks that you built your project using. Here are a few examples.
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
 
-
-
-
 <!-- USAGE EXAMPLES -->
 ## Usage
-
 
 <!-- CONTACT -->
 ## Contact
