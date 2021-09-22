@@ -39,7 +39,9 @@ h3 {
 	margin-left: 20rem;
 	border: none;
 }
-
+.btn{
+	margin: 5px;
+}
 .text_column {
 	width: 29%;
 	text-align: left;
