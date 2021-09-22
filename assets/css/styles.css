@@ -35,6 +35,13 @@ h3 {
     background-position: center center;
 }
 
+.card{
+	margin-left: 20rem;
+	border: none;
+}
+.btn{
+	margin: 5px;
+}
 .text_column {
 	width: 29%;
 	text-align: left;
@@ -103,8 +110,6 @@ main .main_column p {
 main {
 	display: inline-block;
 }
-
-
 
 /* Mobile */
 @media (max-width: 320px) {
