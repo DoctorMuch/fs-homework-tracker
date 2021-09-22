@@ -35,6 +35,15 @@ h3 {
     background-position: center center;
 }
 
+.card {
+  margin-left: 20rem;
+  border: none;
+}
+
+.btn {
+  margin: 5px;
+}
+
 .text_column {
 	width: 29%;
 	text-align: left;
@@ -93,6 +102,7 @@ main .main_column p {
 	letter-spacing: 2px;
 	border-top-width: 2px;
 }
+
 .footer_banner {
 	background-color: #5a483d;
 	padding-top: 60px;
@@ -100,10 +110,10 @@ main .main_column p {
 	margin-bottom: 0px;
 	background-repeat: repeat;
 }
+
 main {
 	display: inline-block;
 }
-
 
 
 /* Mobile */
