@@ -1,20 +1,20 @@
 const searchFormEl = document.getElementById("search-form");
 const searchEl = document.getElementById("start");
-const input = searchEl?.value?.trim();
+const zipInput = searchEl?.value?.trim();
 
 
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
 const headers = new Headers();
 
-// headers.append("Authorization", `Bearer ${yelpKey}`);
+headers.append("Authorization", `Bearer ${yelpKey}`);
 headers.append("Access-Control-Allow-Origin", "*");
 
 // proxy
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
 // Sample input is St. Louis. We can replace with our input eventually.
-const sampleInput = "St.Louis";
-const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee&location=${sampleInput}`;
+const sampleInput = "&latitude=39.819382402&longitude=-89.645660649";
+const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee${sampleInput}`;
 
 const requestOptions = {
   method: "GET",
@@ -36,25 +36,19 @@ fetch(`${proxyUrl}${yelpApiUrl}`, requestOptions)
   .catch((error) => console.log("error", error));
 console.log(`${proxyUrl}${yelpApiUrl}`);
 
-let yelpKey = "aBdON1ZvfAKCxHuCC0EUxrGoJYkiBMSVHOlne-grhLwl_lH2xVdrdr0dB8oWIW8GIpJeyo2ZelAiGq-ARqIYSXzNarkJXeG_yJK9Kk8iX2_bChtoEkojlSqFGzBJYXYx";
-let yelpUrlRoot = "https://api.yelp.com/v3/businesses/search?term=coffee&latitude=-93.2529553&longitude=35.328973&apiKey=aBdON1ZvfAKCxHuCC0EUxrGoJYkiBMSVHOlne-grhLwl_lH2xVdrdr0dB8oWIW8GIpJeyo2ZelAiGq-ARqIYSXzNarkJXeG_yJK9Kk8iX2_bChtoEkojlSqFGzBJYXYx";
-
 let searchHandler = function(event){
   event.preventDefault();
-  const userInput = searchEl.value.trim();
-  testFetch(userInput);
-  userInput.value = '';
-  
-}
-let testFetch = function(zipcode){
-  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&limit=3&type=city&filter=countrycode:us,mo${geoKey}`)
+  coordFetch(zipInput);
+  console.log(zipInput);
+};
+
+let coordFetch = function(zipcode){
+  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&type=postcode&limit=3&filter=countrycode:us,mo${geoKey}`)
   .then(function(res){
     res.json()
     .then(function(info){
-      let inputLat = info.features[0].properties.lat;
-      let inputLon = info.features[0].properties.lon
-      console.log(inputLat,inputLon);
-      return inputLat,inputLon;
+      console.log(info.features[0].properties.lat, info.features[0].properties.lon);
+      return info.features[0].properties.lat, info.features[0].properties.lon;
     })
   })
 };
