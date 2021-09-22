@@ -1,7 +1,21 @@
 const searchFormEl = document.getElementById("search-form");
 const searchEl = document.getElementById("start");
-const input = searchEl?.value?.trim();
+let searchLat;
+let searchLong;
 
+let coordFetch = function(zipcode){
+  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&type=postcode&limit=3&filter=countrycode:us,mo${geoKey}`)
+  .then(function(res){
+    res.json()
+    .then(function(info){
+      searchLat = info.features[0].properties.lat;
+      searchLong = info.features[0].properties.lon;
+      console.log("searchLat", searchLat, "searchLong",searchLong);
+      yelpFetch(searchLat,searchLong);
+      return searchLat, searchLong;
+    })
+  })
+};
 
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
 const headers = new Headers();
@@ -14,7 +28,9 @@ const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
 // Sample input is St. Louis. We can replace with our input eventually.
 const sampleInput = "&latitude=39.819382402&longitude=-89.645660649";
-const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee${sampleInput}`;
+let lat = 38.623548023;
+let lon = -90.25626161;
+const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}`;
 
 const requestOptions = {
   method: "GET",
@@ -22,36 +38,37 @@ const requestOptions = {
   redirect: "follow"
 };
 
-// the fetch 
-fetch(`${proxyUrl}${yelpApiUrl}`, requestOptions)
-  .then((response) => response.json())
-  .then((result) => {
-    console.log("result = ", result);
-    const coffeePlaces = result.businesses;
-    console.log("coffeePlaces = ", coffeePlaces);
-    $(".card-body").append(
-      `<h1>${coffeePlaces[0].name}: ${coffeePlaces[0].rating} stars</h1>`
-    );
-  })
-  .catch((error) => console.log("error", error));
-console.log(`${proxyUrl}${yelpApiUrl}`);
+  // the fetch 
+let yelpFetch = function(){
+  console.log(searchLat, searchLong);
+  fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      console.log("result = ", result);
+      const coffeePlaces = result.businesses;
+      console.log("coffeePlaces = ", coffeePlaces);
+      $(".card-body").append(
+        `<h1>${coffeePlaces[0].name}</h1>
+        <h2>${coffeePlaces[0].rating} stars</h2>
+          <address>
+          ${coffeePlaces[0].location.display_address[0]}
+          ${coffeePlaces[0].location.display_address[1]}
+          </address>`
+      );
+    })
+    .catch((error) => console.log("error", error));
+  console.log(`${proxyUrl}${yelpApiUrl}`);
+}
 
 let searchHandler = function(event){
-  let zipInput = searchEl.value.trim();
+  const zipInput = searchEl.value.trim();
   event.preventDefault();
   coordFetch(zipInput);
   console.log(zipInput);
 };
-
-let coordFetch = function(zipcode){
-  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&type=postcode&limit=3&filter=countrycode:us,mo${geoKey}`)
-  .then(function(res){
-    res.json()
-    .then(function(info){
-      console.log(info.features[0].properties.lat, info.features[0].properties.lon);
-      return info.features[0].properties.lat, info.features[0].properties.lon;
-    })
-  })
-}
+ 
+// let showResults = function(lat, lon){
+//   let resultsEl = document.getElementById("results");
+// }
 
 searchFormEl.addEventListener("submit",searchHandler);
