@@ -28,22 +28,35 @@ let testFetch = function(zipcode){
   })
 };
 
-let myHeaders = new Headers();
-myHeaders.append("Host", "api.yelp.com");
-myHeaders.append("Authorization", "Bearer AxElVNzLgKgxOjwHwRQhVWwefF8-zwSvByZ-veYfEtaZ53PaGII5hNE2s2W5BKjOhVCVycya1xmUDUGTffG3h8qA16VAzuWpCF5MqprKT9se4bbKgOiYaUn3X5FKYXYx");
-myHeaders.append("Access-Control-Allow-Origin", "same-origin");
-myHeaders.append("Cache-Control", "no-cache");
+let pos;
+let map;
+function initMap(){
+  pos={lat: 38.623548023, lng: -90.25626161};
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: pos,
+    zoom: 15
+  });
+}
+// Failed YelpFusionApi call attempt(s)
+// let myHeaders = new Headers();
+// myHeaders.append("Host", "api.yelp.com");
+// myHeaders.append("Authorization", "Bearer AxElVNzLgKgxOjwHwRQhVWwefF8-zwSvByZ-veYfEtaZ53PaGII5hNE2s2W5BKjOhVCVycya1xmUDUGTffG3h8qA16VAzuWpCF5MqprKT9se4bbKgOiYaUn3X5FKYXYx");
+// myHeaders.append("Access-Control-Allow-Origin", "same-origin");
+// myHeaders.append("Cache-Control", "no-cache");
 
-let requestOptions = {
-  method: 'GET',
-  headers: myHeaders, 
-  redirect: 'follow'
-};
+// let requestOptions = {
+//   method: 'GET',
+//   headers: myHeaders, 
+//   redirect: 'follow'
+// };
 
-fetch("https://api.yelp.com/v3/businesses/search?location=new+york", requestOptions)
-.then(response => response.text())
-.then(result => console.log(result))
-.catch(error => console.log('error', error));
+// fetch("https://api.yelp.com/v3/businesses/search?location=new+york", requestOptions)
+// .then(response => response.text())
+// .then(result => console.log(result))
+// .catch(error => console.log('error', error));
  
+let showResults = function(lat, lon){
+  let resultsEl = document.getElementById("results");
+}
 
 searchFormEl.addEventListener("submit",searchHandler);
