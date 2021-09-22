@@ -6,7 +6,7 @@ const input = searchEl?.value?.trim();
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
 const headers = new Headers();
 
-headers.append("Authorization", `Bearer ${yelpKey}`);
+// headers.append("Authorization", `Bearer ${yelpKey}`);
 headers.append("Access-Control-Allow-Origin", "*");
 
 // proxy
@@ -41,8 +41,8 @@ let searchHandler = function(event){
   testFetch(input);
   console.log(input);
 }
-let testFetch = function(city){
-  fetch("https://api.geoapify.com/v1/geocode/search?text=london&limit=3&type=city&filter=countrycode:us,mo"+geoKey)
+let testFetch = function(zipcode){
+  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&limit=3&type=city&filter=countrycode:us,mo${geoKey}`)
   .then(function(res){
     res.json()
     .then(function(info){
