@@ -1,6 +1,6 @@
 const searchFormEl = document.getElementById("search-form");
 const searchEl = document.getElementById("start");
-const input = searchEl?.value?.trim();
+const input = searchEl.value.trim();
 
 
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
@@ -37,17 +37,19 @@ fetch(`${proxyUrl}${yelpApiUrl}`, requestOptions)
 console.log(`${proxyUrl}${yelpApiUrl}`);
 
 let searchHandler = function(event){
+  let zipInput = searchEl.value.trim();
   event.preventDefault();
-  testFetch(input);
-  console.log(input);
-}
-let testFetch = function(zipcode){
-  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&limit=3&type=city&filter=countrycode:us,mo${geoKey}`)
+  coordFetch(zipInput);
+  console.log(zipInput);
+};
+
+let coordFetch = function(zipcode){
+  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&type=postcode&limit=3&filter=countrycode:us,mo${geoKey}`)
   .then(function(res){
     res.json()
     .then(function(info){
-      console.log(info.features[0].geometry.coordinates);
-      return info.features[0].geometry.coordinates[0];
+      console.log(info.features[0].properties.lat, info.features[0].properties.lon);
+      return info.features[0].properties.lat, info.features[0].properties.lon;
     })
   })
 }
