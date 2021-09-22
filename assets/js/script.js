@@ -1,20 +1,20 @@
 const searchFormEl = document.getElementById("search-form");
 const searchEl = document.getElementById("start");
-const input = searchEl.value.trim();
+const input = searchEl?.value?.trim();
 
 
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
 const headers = new Headers();
 
-// headers.append("Authorization", `Bearer ${yelpKey}`);
+headers.append("Authorization", `Bearer ${yelpKey}`);
 headers.append("Access-Control-Allow-Origin", "*");
 
 // proxy
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
 // Sample input is St. Louis. We can replace with our input eventually.
-const sampleInput = "St.Louis";
-const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee&location=${sampleInput}`;
+const sampleInput = "&latitude=39.819382402&longitude=-89.645660649";
+const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee${sampleInput}`;
 
 const requestOptions = {
   method: "GET",
