@@ -3,7 +3,7 @@ const searchEl = document.getElementById("start");
 const input = searchEl.value.trim();
 
 
-let geoKey = "&apiKey=af0eec2b25d34eb690dca8d75d93b100";
+
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
 
 let searchHandler = function(event){
