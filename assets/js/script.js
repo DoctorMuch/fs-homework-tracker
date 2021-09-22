@@ -1,9 +1,6 @@
 const searchFormEl = document.getElementById("search-form");
 const searchEl = document.getElementById("start");
-<<<<<<< HEAD
-=======
 const input = searchEl?.value?.trim();
->>>>>>> main
 
 
 let geoApiUrlRoot = "https://api.geoapify.com/v1/geocode/search?text=";
@@ -50,15 +47,9 @@ let searchHandler = function(event){
   
 }
 let testFetch = function(zipcode){
-<<<<<<< HEAD
-  fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&limit=1&type=postcode&filter=countrycode:us,mo`+geoKey)
-  .then(function(response){
-    response.json()
-=======
   fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&limit=3&type=city&filter=countrycode:us,mo${geoKey}`)
   .then(function(res){
     res.json()
->>>>>>> main
     .then(function(info){
       let inputLat = info.features[0].properties.lat;
       let inputLon = info.features[0].properties.lon
@@ -68,15 +59,7 @@ let testFetch = function(zipcode){
   })
 };
 
-let pos;
-let map;
-function initMap(){
-  pos={lat: 38.623548023, lng: -90.25626161};
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: pos,
-    zoom: 15
-  });
-}
+
 // Failed YelpFusionApi call attempt(s)
 // let myHeaders = new Headers();
 // myHeaders.append("Host", "api.yelp.com");
