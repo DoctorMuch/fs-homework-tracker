@@ -41,20 +41,23 @@ const requestOptions = {
   // the fetch 
 let yelpFetch = function(){
   console.log(searchLat, searchLong);
-  fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}`, requestOptions)
+  fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}&bias=rating`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       console.log("result = ", result);
       const coffeePlaces = result.businesses;
       console.log("coffeePlaces = ", coffeePlaces);
+      
+      for(i=0;i<5;i++){
       $(".card-body").append(
-        `<h1>${coffeePlaces[0].name}</h1>
-        <h2>${coffeePlaces[0].rating} stars</h2>
+        `<h1>${coffeePlaces[i].name}</h1>
+          <h2>${coffeePlaces[i].rating} stars</h2>
           <address>
-          ${coffeePlaces[0].location.display_address[0]}
-          ${coffeePlaces[0].location.display_address[1]}
+          ${coffeePlaces[i].location.display_address[0]}
+          ${coffeePlaces[i].location.display_address[1]}
           </address>`
-      );
+        );
+      }
     })
     .catch((error) => console.log("error", error));
   console.log(`${proxyUrl}${yelpApiUrl}`);
