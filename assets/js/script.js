@@ -49,8 +49,13 @@ let yelpFetch = function(){
       console.log("coffeePlaces = ", coffeePlaces);
       
       for(i=0;i<5;i++){
-      $(".card-body").append(
-        `<h1>${coffeePlaces[i].name}</h1>
+        let shopCard = document.createElement("div");
+        $(".card-body")
+          .append(shopCard);
+
+        $(shopCard)  
+          .append(
+          `<h1>${coffeePlaces[i].name}</h1>
           <h2>${coffeePlaces[i].rating} stars</h2>
           <address>
           ${coffeePlaces[i].location.display_address[0]}
