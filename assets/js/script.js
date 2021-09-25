@@ -55,14 +55,16 @@ let yelpFetch = function(){
 
         $(shopCard)  
           .append(
-          `<h3>${coffeePlaces[i].name}</h3>
-          <h4>${coffeePlaces[i].rating} stars</h4>
-          <address>
+          `<img src=${coffeePlaces[i].image_url} class="card-img-top">
+          <h3 class="card-title">${coffeePlaces[i].name}</h3>
+          <h4 class="card-subtitle">${coffeePlaces[i].rating} stars</h4>
+          <address class="card-text">
           ${coffeePlaces[i].location.display_address[0]}
           ${coffeePlaces[i].location.display_address[1]}
           </address>`
           )
-          .addClass("flex-item");
+          .addClass("card-body")
+          .attr("style", "width:18rem");
       }
     })
     .catch((error) => console.log("error", error));
