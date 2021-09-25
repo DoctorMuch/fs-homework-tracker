@@ -50,18 +50,19 @@ let yelpFetch = function(){
       
       for(i=0;i<5;i++){
         let shopCard = document.createElement("div");
-        $(".card-body")
+        $(".flex-container")
           .append(shopCard);
 
         $(shopCard)  
           .append(
-          `<h1>${coffeePlaces[i].name}</h1>
-          <h2>${coffeePlaces[i].rating} stars</h2>
+          `<h3>${coffeePlaces[i].name}</h3>
+          <h4>${coffeePlaces[i].rating} stars</h4>
           <address>
           ${coffeePlaces[i].location.display_address[0]}
           ${coffeePlaces[i].location.display_address[1]}
           </address>`
-        );
+          )
+          .addClass("flex-item");
       }
     })
     .catch((error) => console.log("error", error));
@@ -71,8 +72,12 @@ let yelpFetch = function(){
 let searchHandler = function(event){
   const zipInput = searchEl.value.trim();
   event.preventDefault();
-  coordFetch(zipInput);
-  console.log(zipInput);
+  if (zipInput){
+    coordFetch(zipInput);
+    console.log(zipInput);
+  } else {
+    alert("To find the coffee, you gots to give the zip!")
+  }
 };
  
 // let showResults = function(lat, lon){

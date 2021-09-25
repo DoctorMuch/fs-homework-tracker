@@ -12,8 +12,8 @@ body {
 }
 
 h3 {
-    font-family: source-sans-pro;
-    font-weight: bolder;
+  font-family: source-sans-pro;
+  font-weight: bolder;
 }
 .container {
 	width: 90%;
@@ -30,9 +30,9 @@ h3 {
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 .card {
@@ -88,7 +88,7 @@ main .main_column p {
 	font-weight: lighter;
 	margin-left: 20px;
 	margin-right: 20px;
-    padding-bottom: 150px;
+  padding-bottom: 150px;
 }
 
 .copyright {
