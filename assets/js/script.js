@@ -81,10 +81,11 @@ let searchHandler = function(event){
   } else {
     alert("To find the coffee, you gots to give the zip!")
   }
+
+localStorage.setItem("zipInput", zipInput);
+console.log(localStorage);
 };
  
-let shopClick = function(){
-
-}
-
 searchFormEl.addEventListener("submit",searchHandler);
+
+
