@@ -82,8 +82,8 @@ let searchHandler = function(event){
   }
 };
  
-// let showResults = function(lat, lon){
-//   let resultsEl = document.getElementById("results");
-// }
+let shopClick = function(){
+  
+}
 
 searchFormEl.addEventListener("submit",searchHandler);
