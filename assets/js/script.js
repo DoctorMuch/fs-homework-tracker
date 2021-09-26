@@ -30,7 +30,7 @@ const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 const sampleInput = "&latitude=39.819382402&longitude=-89.645660649";
 let lat = 38.623548023;
 let lon = -90.25626161;
-const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}`;
+const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}&sort_by=rating`;
 
 const requestOptions = {
   method: "GET",
@@ -41,7 +41,7 @@ const requestOptions = {
   // the fetch 
 let yelpFetch = function(){
   console.log(searchLat, searchLong);
-  fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}&bias=rating`, requestOptions)
+  fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&sort_by=rating&latitude=${searchLat}&longitude=${searchLong}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       console.log("result = ", result);
@@ -50,33 +50,41 @@ let yelpFetch = function(){
       
       for(i=0;i<5;i++){
         let shopCard = document.createElement("div");
-        $(".card-body")
+        shopCard.textContent = '';
+        $("#shopLog")
           .append(shopCard);
 
         $(shopCard)  
           .append(
-          `<h1>${coffeePlaces[i].name}</h1>
-          <h2>${coffeePlaces[i].rating} stars</h2>
-          <address>
+          `<img src=${coffeePlaces[i].image_url} class="card-img-top">
+          <h3 class="card-title">${coffeePlaces[i].name}</h3>
+          <h4 class="card-subtitle">${coffeePlaces[i].rating} stars</h4>
+          <address class="card-text">
           ${coffeePlaces[i].location.display_address[0]}
           ${coffeePlaces[i].location.display_address[1]}
           </address>`
-        );
+          )
+          .addClass("card-body")
+          .attr("style", "width:10rem");
       }
     })
     .catch((error) => console.log("error", error));
   console.log(`${proxyUrl}${yelpApiUrl}`);
-}
+};
 
 let searchHandler = function(event){
   const zipInput = searchEl.value.trim();
   event.preventDefault();
-  coordFetch(zipInput);
-  console.log(zipInput);
+  if (zipInput){
+    coordFetch(zipInput);
+    console.log(zipInput);
+  } else {
+    alert("To find the coffee, you gots to give the zip!")
+  }
 };
  
-// let showResults = function(lat, lon){
-//   let resultsEl = document.getElementById("results");
-// }
+let shopClick = function(){
+
+}
 
 searchFormEl.addEventListener("submit",searchHandler);

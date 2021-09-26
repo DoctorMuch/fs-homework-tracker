@@ -6,21 +6,13 @@ body {
 	margin-right: 10px;
 	margin-bottom: 0px;
 	margin-left: 10px;
-	font-style: bold;
 	font-weight: 400;
   font-size: large;
 }
 
 h3 {
-    font-family: source-sans-pro;
-    font-weight: bolder;
-}
-.container {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	height: 1000px;
-	background-color: #FFFFFF;
+  font-family: source-sans-pro;
+  font-weight: bolder;
 }
 
 .hero_header {
@@ -30,13 +22,12 @@ h3 {
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 .card {
-  margin-left: 20rem;
   border: none;
 }
 
@@ -44,23 +35,13 @@ h3 {
   margin: 5px;
 }
 
-.text_column {
-	width: 29%;
-	text-align: left;
-	font-weight: bolder;
-	line-height: 25px;
-	float: left;
-	padding-left: 40px;
-	padding-right: 20px;
-	color: #1c383d;
-}
-
 main {
+  display: inline-block;
 	background-color: #FFFFFF;
-	padding-bottom: 35px;
+	padding: 35px;
 }
 .main_column {
-	width: 50%;
+	width: 45%;
 	text-align: center;
 	padding-top: 30px;
 	float: left;
@@ -73,22 +54,9 @@ main .main_column h3 {
 main .main_column p {
 	color: #5a483d;
 	background-color: #FFFFFF;
-}
-.cards {
-	width: 100%;
-	height: auto;
-	max-width: 400px;
-	max-height: 200px;
-}
-main .main_column p {
-	padding-left: 30px;
-	padding-right: 30px;
 	text-align: justify;
-	line-height: 25px;
-	font-weight: lighter;
-	margin-left: 20px;
-	margin-right: 20px;
-    padding-bottom: 150px;
+	line-height: 1.5rem;
+	font-weight: 400;
 }
 
 .copyright {
@@ -109,10 +77,6 @@ main .main_column p {
 	padding-bottom: 60PX;
 	margin-bottom: 0px;
 	background-repeat: repeat;
-}
-
-main {
-	display: inline-block;
 }
 
 /* Mobile */
