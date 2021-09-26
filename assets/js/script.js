@@ -30,7 +30,7 @@ const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 const sampleInput = "&latitude=39.819382402&longitude=-89.645660649";
 let lat = 38.623548023;
 let lon = -90.25626161;
-const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}`;
+const yelpApiUrl = `https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}&sort_by=rating`;
 
 const requestOptions = {
   method: "GET",
@@ -41,7 +41,7 @@ const requestOptions = {
   // the fetch 
 let yelpFetch = function(){
   console.log(searchLat, searchLong);
-  fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&latitude=${searchLat}&longitude=${searchLong}&bias=rating`, requestOptions)
+  fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&sort_by=rating&latitude=${searchLat}&longitude=${searchLong}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       console.log("result = ", result);
@@ -50,7 +50,8 @@ let yelpFetch = function(){
       
       for(i=0;i<5;i++){
         let shopCard = document.createElement("div");
-        $(".flex-container")
+        shopCard.textContent = '';
+        $("#shopLog")
           .append(shopCard);
 
         $(shopCard)  
@@ -64,12 +65,12 @@ let yelpFetch = function(){
           </address>`
           )
           .addClass("card-body")
-          .attr("style", "width:18rem");
+          .attr("style", "width:10rem");
       }
     })
     .catch((error) => console.log("error", error));
   console.log(`${proxyUrl}${yelpApiUrl}`);
-}
+};
 
 let searchHandler = function(event){
   const zipInput = searchEl.value.trim();
@@ -83,7 +84,7 @@ let searchHandler = function(event){
 };
  
 let shopClick = function(){
-  
+
 }
 
 searchFormEl.addEventListener("submit",searchHandler);
