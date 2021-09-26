@@ -2,6 +2,7 @@ const searchFormEl = document.getElementById("search-form");
 const searchEl = document.getElementById("start");
 let searchLat;
 let searchLong;
+let businessId;
 
 let coordFetch = function(zipcode){
   fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&type=postcode&limit=3&filter=countrycode:us,mo${geoKey}`)
@@ -44,33 +45,44 @@ let yelpFetch = function(){
   fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/search?term=coffee&sort_by=rating&latitude=${searchLat}&longitude=${searchLong}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
+      saveShops(result);
       console.log("result = ", result);
       const coffeePlaces = result.businesses;
       console.log("coffeePlaces = ", coffeePlaces);
       
       for(i=0;i<5;i++){
+        businessId = coffeePlaces[i].id;
         let shopCard = document.createElement("div");
-        shopCard.textContent = '';
+        let shopName = coffeePlaces[i].name;
+        let shopStars = coffeePlaces[i].rating;
+        let shopPic = coffeePlaces[i].image_url;
+        let shopAddress = coffeePlaces[i].location.display_address[0];
+        let shopTown = coffeePlaces[i].location.display_address[1];
         $("#shopLog")
           .append(shopCard);
 
         $(shopCard)  
           .append(
-          `<img src=${coffeePlaces[i].image_url} class="card-img-top">
-          <h3 class="card-title">${coffeePlaces[i].name}</h3>
-          <h4 class="card-subtitle">${coffeePlaces[i].rating} stars</h4>
-          <address class="card-text">
-          ${coffeePlaces[i].location.display_address[0]}
-          ${coffeePlaces[i].location.display_address[1]}
+          `<img src=${shopPic} class="card-img-top">
+          <h3 class="card-title">${shopName}</h3>
+          <h4 class="card-subtitle">${shopStars} stars</h4>
+          <address>
+            ${shopAddress}
+            ${shopTown}
           </address>`
           )
           .addClass("card-body")
-          .attr("style", "width:10rem");
-      }
+          .attr("style", "width:15rem");
+        console.log(businessId);
+        }
     })
     .catch((error) => console.log("error", error));
   console.log(`${proxyUrl}${yelpApiUrl}`);
 };
+
+let saveShops = function(result){
+  console.log(result);
+}
 
 let searchHandler = function(event){
   const zipInput = searchEl.value.trim();
@@ -83,8 +95,14 @@ let searchHandler = function(event){
   }
 };
  
-let shopClick = function(){
 
-}
+  $("#shopLog").on("click", "div", function(){
+    alert("You have clicked on a coffee shop image!");
+    let shopChoice = $(this).text();
+    let id = $(this).businessId;
+    console.log(id)
+    console.log(shopChoice);
+
+  });
 
 searchFormEl.addEventListener("submit",searchHandler);
