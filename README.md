@@ -26,7 +26,7 @@ A small and useful app to help you git your coffee fix
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]())
+![Product Name Screen Shot](assets/images/Screenshot-01.png)
 The “key” to success starts with your morning routine. We all struggle to stay connected during our busy day.  Most of us are rushing to work, the gym, shuffling kids to school and extracurricular events. Life is hard, it gets in the way. We want to help you stay Connected though making a Coffee Connection! 
 According to the National Coffee Association, USA, 7 out of 10 Americans drink coffee every week and 62% drink coffee daily. Coffee Connection wants to help you find the best cup of brew closest to your location. 
 Our app will allow you to search for a Coffee Connection near you. As a user you will be able to type in your zip code and view area coffee shops.  We know not all coffee shops are the same. Maybe you’re into pour overs, tasting flights or just great organic fair trade beans French pressed to perfection. We’ll provide you with customer reviews for each location, powered by Yelp.  One promise we make is this app is The Most Magical, Life-Changing App You'll Ever Use.
