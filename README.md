@@ -31,7 +31,7 @@ As a user I want an app to help me find a coffee shop in my city. When I click o
 <!-- USAGE EXAMPLES -->
 ## Usage
 ![herokuapp](assets/images/access.png)
-When they first open the website and preform a search. They need to click on the link in the console (https://cors-anywhere.herokuapp.com/corsdemo) and request temp access.
+When the user first opens the website and performs a search, they will need to click on the link in the console (https://cors-anywhere.herokuapp.com/corsdemo) and request temp access.
 
 In addition, we used an environmental file "env.js" to store our keys locally. Anyone pulling the code would need to gain the env.js file.
 
