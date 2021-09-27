@@ -15,7 +15,7 @@ function displayOldSearchHistory() {
     let zipDataLocalStorage = JSON.parse(localStorage.getItem("zipInput"));
     zipDataLocalStorage.forEach(zipSearch => {
     const searches = $("#searches");
-    searches.append(`<button onClick = "replaceSearchInput(${zipSearch})">${zipSearch}</button>`);
+    searches.append(`<button class="btn btn-secondary btn-lg" onClick = "replaceSearchInput(${zipSearch})">${zipSearch}</button>`);
     });
   }
 }; 
@@ -129,7 +129,7 @@ let searchHandler = function(event){
   }
 
   const searches = $("#searches");
-  searches.append(`<button onClick = "replaceSearchInput(${zipInput})">${zipInput}</button>`);
+  searches.append(`<button class="btn btn-secondary btn-lg" onClick = "replaceSearchInput(${zipInput})">${zipInput}</button>`);
 };
  
 
