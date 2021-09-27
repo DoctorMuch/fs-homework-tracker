@@ -38,3 +38,5 @@ In addition, we used an environmental file "env.js" to store our keys locally. A
 <!-- CONTACT -->
 ## Contact
 Project Link: [https://github.io/DoctorMuch/fs-joe-java-journey](https://github.io/DoctorMuch/fs-joe-java-journey)
+
+Project Repository: [https://github.com/DoctorMuch/fs-joe-java-journey](https://github.com/DoctorMuch/fs-joe-java-journey)
