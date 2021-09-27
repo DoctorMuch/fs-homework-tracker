@@ -49,7 +49,10 @@ jQuery
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+![Proxy screenshot](assets/images/Screenshot-02.png)
 When they first open the website and preform a search. They need to click on the link in the console (https://cors-anywhere.herokuapp.com/corsdemo) and request temp access.
+
+In addition, we used a environmental file "env.js" to store our keys locally. Anyone pulling the code would need to gain the env.js file. 
 
 
 <!-- CONTACT -->
@@ -62,7 +65,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Example of search results screenshot](assets/images/Screenshot-03.png)
 
 ### Built With
 This section should list any major frameworks that you built your project using. Here are a few examples.
