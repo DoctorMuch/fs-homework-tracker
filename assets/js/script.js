@@ -128,7 +128,6 @@ let searchHandler = function(event){
 
   $("#shopLog")
     .on("click", "div", function(){
-      alert("We are working to get the business ID to fulfill your request.");
       let shopName = this;
       console.log(shopName);
       fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/${this.id}/reviews`, requestOptions)
