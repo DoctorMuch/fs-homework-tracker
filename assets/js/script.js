@@ -82,10 +82,52 @@ let searchHandler = function(event){
     alert("To find the coffee, you gots to give the zip!")
   }
 
-localStorage.setItem("zipInput", zipInput);
-console.log(localStorage);
+
+// working code inside the function. Use if nothing else works. 
+//  localStorage.setItem("zipInput", zipInput);
+//  console.log(localStorage);
+
 };
+
+
+//   // TRY ONE: working / Not working 
+//   let zip = document.getElementById("start").value;
+//   localStorage.setItem("zip", zip);
+//   console.log(localStorage);
+
+// function zipSearch() {
+//   let zipArr= [];
+//   let zip = document.getElementById("start").value;
+  
+// }
+
+// let zipSearch = function () {
  
+//   console.log(zipSearch);
+//   localStorage.setItem("zip_2", zipSearch);
+//   console.log(localStorage);
+// };
+
+// TRY TWO
+
+let zipData = Array();
+console.log(zipData);
+
+function zipDisplay () {
+  // getting value 
+  let inputText =   document.getElementById("start").value="";
+  // append data to arr
+  zipData.push(inputText);
+
+ let test = "";
+
+ for(i=0; i < zipData.length; i++ ) {
+   test = test + zipData[i];
+ }
+}
+
+
+
 searchFormEl.addEventListener("submit",searchHandler);
 
 
