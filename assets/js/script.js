@@ -129,13 +129,24 @@ let searchHandler = function(event){
   $("#shopLog")
     .on("click", "div", function(){
       alert("We are working to get the business ID to fulfill your request.");
+      let shopName = this;
+      console.log(shopName);
       fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/${this.id}/reviews`, requestOptions)
         .then(function(response){
           response.json()
           .then(function(data){
             let shopReviews = data.reviews;
             console.log(shopReviews);
-            console.log(shopReviews[1].text);
+            console.log(shopReviews[1].text)
+            $("#shop-modal")
+              .modal()
+              $("#shop-name")
+              .append(shopName)
+              $("#shop-details")
+              .append(
+                `<p>Review from ${shopReviews[0].user.name}: ${shopReviews[0].text}</p>
+                <span href=${shopReviews[0].url}>`
+              );
           })
         })
       console.log(this.id);
