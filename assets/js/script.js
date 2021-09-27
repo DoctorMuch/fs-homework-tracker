@@ -67,13 +67,13 @@ let yelpFetch = function(){
           <h3 class="card-title">${shopName}</h3>
           <h4 class="card-subtitle">${shopStars} stars</h4>
           <address>
-            ${shopAddress}
-            ${shopTown}
+          ${shopAddress}
+          ${shopTown}
           </address>`
           )
           .addClass("card-body")
-          .attr("style", "width:15rem");
-        console.log(businessId);
+          .attr("style", "width:15rem")
+          .attr("id", `${businessId}`);
         }
     })
     .catch((error) => console.log("error", error));
@@ -96,13 +96,20 @@ let searchHandler = function(event){
 };
  
 
-  $("#shopLog").on("click", "div", function(){
-    alert("You have clicked on a coffee shop image!");
-    let shopChoice = $(this).text();
-    let id = $(this).businessId;
-    console.log(id)
-    console.log(shopChoice);
+  $("#shopLog")
+    .on("click", "div", function(){
+      alert("We are working to get the business ID to fulfill your request.");
+      fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/${this.id}/reviews`, requestOptions)
+        .then(function(response){
+          response.json()
+          .then(function(data){
+            let shopReviews = data.reviews;
+            console.log(shopReviews);
+            console.log(shopReviews[1].text);
+          })
+        })
+      console.log(this.id);
+    });
 
-  });
 
 searchFormEl.addEventListener("submit",searchHandler);
