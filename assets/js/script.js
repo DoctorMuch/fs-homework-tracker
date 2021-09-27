@@ -3,6 +3,21 @@ const searchEl = document.getElementById("start");
 let searchLat;
 let searchLong;
 
+
+function displayOldSearchHistory() {
+  const zipReturn = localStorage.getItem("zipInput")
+  if (zipReturn) {
+    let zipDataLocalStorage = JSON.parse(localStorage.getItem("zipInput"));
+    zipDataLocalStorage.forEach(zipSearch => {
+    const searches = $("#searches");
+    searches.append(`<p>${zipSearch}<p>`);
+    });
+  }
+}; 
+
+displayOldSearchHistory();
+
+
 let coordFetch = function(zipcode){
   fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&type=postcode&limit=3&filter=countrycode:us,mo${geoKey}`)
   .then(function(res){
@@ -82,52 +97,19 @@ let searchHandler = function(event){
     alert("To find the coffee, you gots to give the zip!")
   }
 
+  // Local Storage 
+  const zipReturn = localStorage.getItem("zipInput")
+  if (!zipReturn) {
+    let zipData = [];
+    zipData.push(zipInput);
+    localStorage.setItem("zipInput", JSON.stringify(zipData ));
+  } else {
+    let zipDataLocalStorage = JSON.parse(localStorage.getItem("zipInput"));
+    zipDataLocalStorage.push(zipInput);
+    localStorage.setItem("zipInput",  JSON.stringify(zipDataLocalStorage));
+  }
 
-// working code inside the function. Use if nothing else works. 
-//  localStorage.setItem("zipInput", zipInput);
-//  console.log(localStorage);
-
+  const searches = $("#searches");
+  searches.append(`<p>${zipInput}<p>`);
 };
-
-
-//   // TRY ONE: working / Not working 
-//   let zip = document.getElementById("start").value;
-//   localStorage.setItem("zip", zip);
-//   console.log(localStorage);
-
-// function zipSearch() {
-//   let zipArr= [];
-//   let zip = document.getElementById("start").value;
-  
-// }
-
-// let zipSearch = function () {
- 
-//   console.log(zipSearch);
-//   localStorage.setItem("zip_2", zipSearch);
-//   console.log(localStorage);
-// };
-
-// TRY TWO
-
-let zipData = Array();
-console.log(zipData);
-
-function zipDisplay () {
-  // getting value 
-  let inputText =   document.getElementById("start").value="";
-  // append data to arr
-  zipData.push(inputText);
-
- let test = "";
-
- for(i=0; i < zipData.length; i++ ) {
-   test = test + zipData[i];
- }
-}
-
-
-
 searchFormEl.addEventListener("submit",searchHandler);
-
-
