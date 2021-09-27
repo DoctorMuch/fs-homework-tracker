@@ -4,6 +4,21 @@ let searchLat;
 let searchLong;
 let businessId;
 
+
+function displayOldSearchHistory() {
+  const zipReturn = localStorage.getItem("zipInput")
+  if (zipReturn) {
+    let zipDataLocalStorage = JSON.parse(localStorage.getItem("zipInput"));
+    zipDataLocalStorage.forEach(zipSearch => {
+    const searches = $("#searches");
+    searches.append(`<p>${zipSearch}<p>`);
+    });
+  }
+}; 
+
+displayOldSearchHistory();
+
+
 let coordFetch = function(zipcode){
   fetch(`https://api.geoapify.com/v1/geocode/search?text=${zipcode}&type=postcode&limit=3&filter=countrycode:us,mo${geoKey}`)
   .then(function(res){
@@ -93,6 +108,21 @@ let searchHandler = function(event){
   } else {
     alert("To find the coffee, you gots to give the zip!")
   }
+
+  // Local Storage 
+  const zipReturn = localStorage.getItem("zipInput")
+  if (!zipReturn) {
+    let zipData = [];
+    zipData.push(zipInput);
+    localStorage.setItem("zipInput", JSON.stringify(zipData ));
+  } else {
+    let zipDataLocalStorage = JSON.parse(localStorage.getItem("zipInput"));
+    zipDataLocalStorage.push(zipInput);
+    localStorage.setItem("zipInput",  JSON.stringify(zipDataLocalStorage));
+  }
+
+  const searches = $("#searches");
+  searches.append(`<p>${zipInput}<p>`);
 };
  
 
