@@ -4,6 +4,10 @@ let searchLat;
 let searchLong;
 let businessId;
 
+function replaceSearchInput(zipCode) {
+  document.getElementById("start").value=zipCode;
+  $("#submit-button").click();
+}
 
 function displayOldSearchHistory() {
   const zipReturn = localStorage.getItem("zipInput")
@@ -11,7 +15,7 @@ function displayOldSearchHistory() {
     let zipDataLocalStorage = JSON.parse(localStorage.getItem("zipInput"));
     zipDataLocalStorage.forEach(zipSearch => {
     const searches = $("#searches");
-    searches.append(`<p>${zipSearch}<p>`);
+    searches.append(`<button class="btn btn-secondary btn-lg" onClick = "replaceSearchInput(${zipSearch})">${zipSearch}</button>`);
     });
   }
 }; 
@@ -110,6 +114,9 @@ let searchHandler = function(event){
   }
 
   // Local Storage 
+  if (!zipInput) {
+    return
+  }
   const zipReturn = localStorage.getItem("zipInput")
   if (!zipReturn) {
     let zipData = [];
@@ -122,7 +129,7 @@ let searchHandler = function(event){
   }
 
   const searches = $("#searches");
-  searches.append(`<p>${zipInput}<p>`);
+  searches.append(`<button class="btn btn-secondary btn-lg" onClick = "replaceSearchInput(${zipInput})">${zipInput}</button>`);
 };
  
 
